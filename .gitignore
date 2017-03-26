@@ -11,3 +11,4 @@ Homestead.yaml
 /public/css/
 /public/vendor/
 !.gitkeep
+/resources/assets/vendor/

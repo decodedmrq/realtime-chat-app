@@ -12,7 +12,16 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
+    'login' => 'Login',
+    'logout' => 'Logout',
+    'register' => 'Sign Up',
+    'email' => 'E-Mail Address',
+    'password' => 'Password',
+    'remember_me' => 'Remember Me',
+    'confirm_password' => 'Confirm Password',
+    'send_password' => 'Send Password Reset Link',
+    'reset_password' => 'Reset Password',
+    'forgot_password' => 'Forgot Your Password?',
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 

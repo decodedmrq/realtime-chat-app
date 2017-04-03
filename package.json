@@ -25,6 +25,7 @@
     "laravel-mix": "^0.9.2",
     "lodash": "^4.17.4",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "tether": "^1.4.0"
   }
 }

@@ -11,10 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+Route::group(['middleware' => ['auth', 'role:' . \App\Models\User::ADMIN]], function () {
+    Route::get('/', 'DashboardController@index')->name('home');
+
+    Route::get('/category/search', 'CategoryController@search');
+
+    Route::post('/book/{id}/upload', 'BookController@upload');
+    Route::delete('/book/{id}/files', 'BookController@removeFile');
+
+    Route::resource('dashboard', 'DashboardController');
+    Route::resource('book', 'BookController');
+    Route::resource('category', 'CategoryController');
+});

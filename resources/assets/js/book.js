@@ -6,7 +6,7 @@ import Alert from "./alert";
 import React from "react";
 import AutocompleteSearch from "./autocomplete";
 import {clean} from "./helper";
-import {debounce} from 'lodash';
+import {debounce} from "lodash";
 String.prototype.capitalize = function () {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -22,6 +22,7 @@ export class BookCreate extends React.Component {
         category_id: '',
         _token: Security.csrfToken,
       },
+      isFree: true,
       bookFiles: [],
       isUpload: false,
       message: '',
@@ -47,7 +48,6 @@ export class BookCreate extends React.Component {
     this.setState({input}, () => this.handleAutoSave());
   }
 
-
   handleAutoSave(event) {
     if (this.state.processing) {
       return;
@@ -60,10 +60,14 @@ export class BookCreate extends React.Component {
   }
 
   updateBook(id) {
-    this.setState({message: 'Đang lưu...', messageType: Alert.TYPE_WARNING, processing: true});
+    this.setState({
+      message: 'Đang lưu...',
+      messageType: Alert.TYPE_WARNING,
+      processing: true
+    });
     clean(this.state.input);
     let input = this.state.input;
-    http.put(`/admin/book/${id}`, input).then((res) => {
+    http.put(`/book/${id}`, input).then((res) => {
       this.setState({processing: false});
       if (res.data.success === true) {
         this.setState({message: 'Auto saved', messageType: Alert.TYPE_SUCCESS});
@@ -72,7 +76,11 @@ export class BookCreate extends React.Component {
         }, 3000);
       }
     }).catch((error) => {
-      this.setState({message: 'Connection Error', messageType: Alert.TYPE_DANGER, processing: false});
+      this.setState({
+        message: 'Connection Error',
+        messageType: Alert.TYPE_DANGER,
+        processing: false
+      });
     });
   }
 
@@ -84,10 +92,14 @@ export class BookCreate extends React.Component {
       });
       return false;
     }
-    this.setState({message: 'Đang lưu...', messageType: Alert.TYPE_WARNING, processing: true});
+    this.setState({
+      message: 'Đang lưu...',
+      messageType: Alert.TYPE_WARNING,
+      processing: true
+    });
     clean(this.state.input);
     let input = this.state.input;
-    http.post('/admin/book', input).then((res) => {
+    http.post('/book', input).then((res) => {
       this.setState({processing: false});
       this.setState({
         message: `New book <strong>${res.data.name}</strong> created`,
@@ -99,7 +111,11 @@ export class BookCreate extends React.Component {
       }, 3000);
 
     }).catch((err) => {
-      this.setState({message: 'Connection Error', messageType: Alert.TYPE_DANGER, processing: false});
+      this.setState({
+        message: 'Connection Error',
+        messageType: Alert.TYPE_DANGER,
+        processing: false
+      });
     });
   }
 
@@ -115,6 +131,14 @@ export class BookCreate extends React.Component {
     return true;
   }
 
+  changeType(event) {
+    let isFree = event.target.value;
+    if (isFree) {
+        this.setState({isFree : true});
+    } else {
+      this.setState({isFree : false});
+    }
+  }
 
   beforeRemove(index) {
     return window.confirm('Are you sure?');
@@ -124,7 +148,8 @@ export class BookCreate extends React.Component {
   render() {
     let alert = '';
     if (this.state.message.length > 0) {
-      alert = <Alert class="message" type={this.state.messageType} message={this.state.message}/>
+      alert = <Alert class="message" type={this.state.messageType}
+                     message={this.state.message}/>
     }
     let progressBar = '';
     if (this.state.isUpload) {
@@ -136,11 +161,12 @@ export class BookCreate extends React.Component {
         <div className="text-xs-center"
              id="upload-caption">{text}
         </div>
-        <progress className="progress progress-animated progress-striped" value={this.state.percent} max="100"
+        <progress className="progress progress-animated progress-striped"
+                  value={this.state.percent} max="100"
                   aria-describedby="upload-caption"/>
       </div>;
     }
-      return (
+    return (
         <form action="/book"
               method="post"
               formEncType="multipart/form-data"
@@ -153,7 +179,7 @@ export class BookCreate extends React.Component {
           <fieldset>
             <div className="form-group">
               <div className="row">
-                <div className="col-sm-6">
+                <div className="col-6">
                   <label htmlFor="name">{trans('string.name')}</label>
                   <input id="name"
                          className="form-control"
@@ -166,7 +192,13 @@ export class BookCreate extends React.Component {
                          autoComplete="off"
                          autoCorrect="off"/>
                 </div>
-                <div className="col-sm-6">
+                <div className="col-3">
+                  <label htmlFor="isFree">{trans('string.paid')}</label>
+                  <input type="checkbox" className="form-control"
+                         value={this.state.isFree}
+                         onChange={this.changeType.bind(this)}/>
+                </div>
+                <div className="col-3">
                   <label htmlFor="price">{trans('string.price')}</label>
                   <input id="price"
                          className="form-control"
@@ -181,7 +213,8 @@ export class BookCreate extends React.Component {
             <div className="form-group">
               <div className="row">
                 <div className="col-sm-6">
-                  <label htmlFor="description">{trans('string.description')}</label>
+                  <label htmlFor="description">{trans(
+                      'string.description')}</label>
                   <textarea id="description"
                             rows="10" cols="50"
                             className="form-control"
@@ -189,14 +222,17 @@ export class BookCreate extends React.Component {
                             name="name"
                             spellCheck="false"
                             value={this.state.input.description}
-                            onChange={this.handleChange.bind(this, 'description')}/>
+                            onChange={this.handleChange.bind(this,
+                                'description')}/>
                 </div>
                 <div className="col-sm-6">
-                  <label htmlFor="category_id">{trans('string.category')}</label>
-                  <AutocompleteSearch url="/admin/category/search"
+                  <label htmlFor="category_id">{trans(
+                      'string.category')}</label>
+                  <AutocompleteSearch url="/category/search"
                                       name="category"
-                                      createUrl="/admin/category"
-                                      onChange={this.handleSelectBoxChange.bind(this, 'category_id')}/>
+                                      createUrl="/category"
+                                      onChange={this.handleSelectBoxChange.bind(
+                                          this, 'category_id')}/>
                 </div>
               </div>
             </div>
@@ -207,20 +243,21 @@ export class BookCreate extends React.Component {
                   <Dropzone maxSize="200"
                             containerClass="book-files"
                             extensions="*"
-                            uploadUrl={`/admin/book/${this.state.bookId}/upload`}
-                            removeUrl={`/admin/book/${this.state.bookId}/files`}
+                            uploadUrl={`/book/${this.state.bookId}/upload`}
+                            removeUrl={`/book/${this.state.bookId}/files`}
                             files={this.state.bookFiles}
                             beforeRemove={this.beforeRemove.bind(this)}
                             beforeUpload={this.beforeUpload.bind(this)}/>
                 </div>
                 <div className="col-sm-6">
-                  <label htmlFor="cover_image">{trans('string.cover_image')}</label>
+                  <label htmlFor="cover_image">{trans(
+                      'string.cover_image')}</label>
                   <Dropzone maxSize="2"
                             containerClass="book-files"
                             extensions="*"
                             multiple={false}
-                            uploadUrl={`/admin/book/${this.state.bookId}/upload`}
-                            removeUrl={`/admin/book/${this.state.bookId}/files`}
+                            uploadUrl={`/book/${this.state.bookId}/upload`}
+                            removeUrl={`/book/${this.state.bookId}/files`}
                             requestRemoveData={{cover_image: true}}
                             requestUploadData={{cover_image: true}}
                             accept="image/*"
@@ -232,10 +269,12 @@ export class BookCreate extends React.Component {
               </div>
             </div>
             <div className="form-group text-xs-right">
-              <button className="btn btn-primary" onClick={this.handleAutoSave.bind(this)}>Lưu</button>
+              <button className="btn btn-primary"
+                      onClick={this.handleAutoSave.bind(this)}>Lưu
+              </button>
             </div>
           </fieldset>
         </form>
-      )
+    )
   };
 }

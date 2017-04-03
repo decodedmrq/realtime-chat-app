@@ -11,6 +11,28 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        DB::table('users')->truncate();
+        DB::table('users')->insert([
+            'email' => 'thanhchoco@gmail.com',
+            'password' => bcrypt('123123'),
+        ]);
+        $categories = [
+            'Technology',
+            'Computers',
+            'Economy',
+            'Education',
+        ];
+        $data = [];
+        foreach ($categories as $category) {
+            $data[] = [
+                'name' => $category,
+                'slug' => str_slug($category)
+            ];
+        }
+        Db::table('categories')->insert(
+            $data
+        );
+        factory(\App\Models\Book::class, 25)->create();
+        factory(\App\Models\BookAuthor::class, 25)->create();
     }
 }

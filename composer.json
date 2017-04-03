@@ -15,12 +15,9 @@
     "doctrine/dbal": "@dev",
     "laravel/cashier": "^7.0",
     "laravel/framework": "5.4.*",
-    "laravel/socialite": "@dev",
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "@dev",
     "league/flysystem-aws-s3-v3": "@dev",
-    "pda/pheanstalk": "@dev",
-    "predis/predis": "@dev",
     "rtconner/laravel-tagging": "@dev"
   },
   "require-dev": {

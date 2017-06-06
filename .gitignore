@@ -12,3 +12,5 @@ Homestead.yaml
 /public/vendor/
 !.gitkeep
 /resources/assets/vendor/
+/public/fonts/
+/npm-debug.log

@@ -21,16 +21,18 @@ const publicFontDir = 'public/fonts/';
 mix.js(sourceJsFolder + 'app.js', publicJsDir)
 .sass(sourceSassFolder + 'library.scss', publicCssDir)
 .js(sourceJsFolder + 'bootstrap.js', publicJsDir)
-.sass('resources/assets/sass/app.scss', 'public/css');
-mix.copy(
-  sourceVendor + 'html5shiv/dist/html5shiv.min.js',
-  publicVendor + 'html5shiv/html5shiv.min.js'
-);
-mix.copy(
-  sourceVendor + 'respond/dest/respond.min.js',
-  publicVendor + 'respond/respond.min.js'
-);
-mix.copy(
-  sourceVendor + 'owl.carousel/dist/owl.carousel.min.js',
-  publicVendor + 'owl.carousel/owl.carousel.min.js'
-);
+.sass('resources/assets/sass/app.scss', 'public/css')
+.sass('resources/assets/sass/home.scss', 'public/css');
+
+// mix.copy(
+//   sourceVendor + 'html5shiv/dist/html5shiv.min.js',
+//   publicVendor + 'html5shiv/html5shiv.min.js'
+// );
+// mix.copy(
+//   sourceVendor + 'respond/dest/respond.min.js',
+//   publicVendor + 'respond/respond.min.js'
+// );
+// mix.copy(
+//   sourceVendor + 'owl.carousel/dist/owl.carousel.min.js',
+//   publicVendor + 'owl.carousel/owl.carousel.min.js'
+// );

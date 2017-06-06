@@ -1,31 +1,37 @@
-@mixin hover-focus()
-{
-    &:hover, &:focus {
-        @content
-    }
+@mixin hover-focus() {
+  &:hover, &:focus {
+    @content
+  }
 }
+
 @mixin hover-focus {
 
-        &:focus,
-        &:hover {
-            @content
-        }
+  &:focus,
+  &:hover {
+    @content
+  }
 }
 
 @mixin plain-hover-focus {
 
-        &,
-        &:focus,
-        &:hover {
-            @content
-        }
+  &,
+  &:focus,
+  &:hover {
+    @content
+  }
 }
 
 @mixin hover-focus-active {
 
-        &:focus,
-        &:active,
-        &:hover {
-            @content
-        }
+  &:focus,
+  &:active,
+  &:hover {
+    @content
+  }
+}
+
+@mixin apply-to-ie6-only {
+  * html {
+    @content
+  }
 }

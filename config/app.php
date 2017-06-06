@@ -173,12 +173,10 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        Laravel\Socialite\SocialiteServiceProvider::class,
         Laravel\Cashier\CashierServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Jenssegers\Agent\AgentServiceProvider::class,
         Cviebrock\EloquentSluggable\ServiceProvider::class,
         Conner\Tagging\Providers\TaggingServiceProvider::class,
         /*

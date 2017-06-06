@@ -1,38 +1,32 @@
-<div class="sidebar sidebar-dark">
-    <div class="sidebar-content">
-        <a class="sidebar-brand" href="{{ route('dashboard.index') }}">{{ config('app.name') }}</a>
-        <h4 class="sidebar-heading">Main</h4>
-        <ul class="sidebar-menu sm-condensed" data-toggle="sidebar-collapse">
-            <li class="sidebar-menu-item {{ html_helper()->active('dashboard.index') }}">
-                <a class="sidebar-menu-button" href="{{ route('dashboard.index') }}">
-                    <i class="sidebar-menu-icon material-icons">home</i> Dashboard
-                </a>
-            </li>
-            <li class="sidebar-menu-item {{ html_helper()->active('book.index') }}">
-                <a class="sidebar-menu-button" href="{{ route('book.index') }}">
-                    <i class="sidebar-menu-icon material-icons">book</i> Book Manage
-                </a>
-                <ul class="sidebar-submenu sm-active-button-bg">
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="index.html">Default</a>
-                    </li>
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="layout-fluid-sidebar-light.html">Sidebar Light</a>
-                    </li>
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="layout-fluid-sidebar-multiple.html">Multiple Sidebars</a>
-                    </li>
-                    <li class="sidebar-menu-item">
-                        <a class="sidebar-menu-button" href="layout-fixed.html">Fixed Layout</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="sidebar-menu-item">
-                <a class="sidebar-menu-button" href="#">
-                    <i class="sidebar-menu-icon material-icons">assignment</i> Pages
-                </a>
+<nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Chat Application</a>
 
-            </li>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            {{--<li class="nav-item active">--}}
+                {{--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a class="nav-link" href="#">Link</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item">--}}
+                {{--<a class="nav-link disabled" href="#">Disabled</a>--}}
+            {{--</li>--}}
+            {{--<li class="nav-item dropdown">--}}
+                {{--<a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>--}}
+                {{--<div class="dropdown-menu" aria-labelledby="dropdown01">--}}
+                    {{--<a class="dropdown-item" href="#">Action</a>--}}
+                    {{--<a class="dropdown-item" href="#">Another action</a>--}}
+                    {{--<a class="dropdown-item" href="#">Something else here</a>--}}
+                {{--</div>--}}
+            {{--</li>--}}
         </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
-</div>
+</nav>

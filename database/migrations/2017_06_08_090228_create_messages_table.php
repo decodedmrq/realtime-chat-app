@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserFavoritesTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,13 @@ class CreateUserFavoritesTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_favorites', function (Blueprint $table) {
+        Schema::create('messages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->morphs('favoriteable');
+            $table->unsignedInteger('thread_id');
+            $table->foreign('thread_id')->references('id')->on('threads');
+            $table->unsignedInteger('sender_id');
+            $table->foreign('sender_id')->references('id')->on('users');
+            $table->text('body');
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ class CreateUserFavoritesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_favorites');
+        Schema::dropIfExists('messages');
     }
 }

@@ -18,7 +18,8 @@
     "laravel/tinker": "~1.0",
     "laravelcollective/html": "@dev",
     "league/flysystem-aws-s3-v3": "@dev",
-    "rtconner/laravel-tagging": "@dev"
+    "rtconner/laravel-tagging": "@dev",
+    "predis/predis": "^1.1"
   },
   "require-dev": {
     "fzaninotto/faker": "~1.4",

@@ -2,12 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\Book;
-use App\Models\Favorite;
-use App\Models\Rating;
-use App\Observers\BookObserver;
-use App\Observers\FavoriteObserver;
-use App\Observers\RatingObserver;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,9 +13,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Rating::observe(RatingObserver::class);
-        Favorite::observe(FavoriteObserver::class);
-        Book::observe(BookObserver::class);
     }
 
     /**

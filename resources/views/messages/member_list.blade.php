@@ -11,7 +11,6 @@
         </span>
     </div>
 
-    <!-- member list -->
     <ul class="friend-list">
         <li class="active bounceInDown">
             <a href="#" class="clearfix text-left">

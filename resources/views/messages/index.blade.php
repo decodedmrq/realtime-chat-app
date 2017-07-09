@@ -4,11 +4,5 @@
 @endpush
 
 @section('content')
-    <div class="row">
-        {{--member list--}}
-        @include('messages.member_list')
-        <!--=========================================================-->
-        <!-- selected chat -->
-        @include('messages.selected_chat')
-    </div>
+    <div id="messages"></div>
 @endsection
